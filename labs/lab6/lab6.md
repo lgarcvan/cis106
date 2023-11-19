@@ -20,3 +20,4 @@ course: cis106
 ![q4.4](q4.4.png)<br>
 
 # Challenge Question
+![CQ](CQ.png)<br>
