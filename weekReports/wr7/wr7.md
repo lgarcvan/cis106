@@ -1,0 +1,183 @@
+---
+name: Vanessa Garcia
+semester: Fall 23
+course: cis106
+---
+
+# Week Report 7
+
+## Cat Command
+* cat command used for display content of file 
+* Formula:
+  * cat + option +Files to display
+* EX:  Display content of /etc/passwd file
+  * cat /etc/passwd
+* EX: Display the content of the /etc/passwd file with line numbers and the $ to indicate the end of every line.
+  *   cat -nE /etc/passwd
+  <br>
+
+ ## Tac Command
+ * Tac command is used for display content of file in reverse order
+ * Formula:
+   * tac + option + Files to display
+ * EX: Display the content of the /etc/passwd file in reverse order.
+    * tac /etc/passwd
+ * EX: Display content of path using absolute path
+    * tac ~/Documents/todo.md
+<br>
+
+## Head Command
+* Display the top N number of lines of given file, by default prints first 10.
+* Formula:
+  *  head + option + Files 
+* EX:Display the first 5 lines of a the /etc/passwd file.
+  * head -5 /etc/passwd
+* EX: Display the account info stored in /etc/passwd of first user in your system
+  *   head -1 /etc/passwd
+<br>
+
+## Tail Command
+* Display the last N number of lines of given file
+* Formula:
+  *  head + option + Files
+* EX: Display the last 5 lines of a the /etc/passwd file. 
+  * tail -5 /etc/passwd
+* EX: Display the account info stored in /etc/passwd of last user in your system
+  *   tail -1 /etc/passwd
+<br>
+
+## Cut Command
+* Cut command is used t extract a specific section of each line of a file & display it to the screen.
+* Formula:
+  *  cut + option + Files
+* EX:Cut range of bytes per line
+  * cut -b 1-5 username.txt
+* EX: CUt a file excluding a given field
+  * cut -d ',' --complement -s -f3 user.txt
+  <br> 
+
+##  Paste Command
+* Joins files horizontally in columns
+* Formula:
+  *  paste + option + Files
+* EX:  Merge two files
+  * paste users.lst ip_address.lst 
+* EX: Merge two files using a different delimiter
+  * paste -d ":" users1.lst ip_addresses.lst  
+<br>
+
+## Sort Command
+* Sort files, alphabetically, in reverse order, by number, and by month
+* Formula:
+    *  sort + option + Files
+* EX: Sort file & save the output to new file
+    * sort -o sorted.lst users.lst
+* EX: Sort file in reverse
+    * sort -r users.txt
+<br>
+
+## WC Command
+* prints the number of line, character & bytes in a file
+* Formula:
+  *  wc + option + Files
+* EX: Display number of character in file
+  * wc -m users.txt
+* EX: Display number of words in file
+  * wc -w users.txt
+<br>
+
+## tr command
+* used for translating or deleting character from standard output
+* Formula:
+  * standard output | tr + set + set
+* EX: Translate white space into tabs
+  * cat program.py | tr "[:space:]" '\t'
+* EX: Translate tabs into space
+  * cat file.py | tr -s "[:space:]" ''  
+<br>
+
+## diff command
+* Compares files & displays the difference between them
+* Formula:
+  *  diff + option + file1 + file2
+* EX: display difference b/n two files
+  * diff cars.csv cars-backup.csv
+* EX: Display differnce b/n two files in column format:
+  * diff -y cars.csv cars-backup.csv
+<br>
+
+## Grep Command
+* search text file in given file. Grep works line by line 
+* Formula:
+  * grep + option + search criteria + file
+* EX: Search line that has word "dracula" in file
+  * grep 'dracula' dracula.txt
+* EX: Search and match only the word
+  * grep -o 'dracula' dracula.txt
+<br>
+
+## Awk Command
+* scripting language used for processing & displaying text.Performs operations line by line
+* Formula:
+  * awk + options + {awk command} + file + file to save (optional)
+* EX: Print first column of every line of a file
+  * awk '{print $1}' ~/Documents/Csv/cars.csv
+* EX: Print the first & last field of the /etc/passwd
+  * awk -F: '{print $1," = ",$NF}' /etc/passwd        
+* EX: Convert the first field to upper/lower case
+  * awk -F: "{print toupper($1)}' /etc/passwd
+* EX: Print first fist field of etc/passwd file
+  * awk -F: '{print $1}' /etc/passwd
+* EX: Print the first & 3 field with line numbers
+  * awk -F: '{print NR,$1,$3}' /etc/passwd
+<br>
+
+## Sed Command
+* Stream editor that performs operations on files & standard output.It can search, find & replace, insert & deletion.Using SED you can edit files w/o opening them.
+* Formula:
+  * sed options + sed script + file
+* EX: Replace a string in given file (replace pizza for rice)
+  * sed 's/pizza/rice/' shopping-list.lst 
+* EX: Replace all occurence of patterns in file
+  * sed 's/pizza/rice/g' shopping-list.lst
+* EX: Delete line 5
+  * sed '5d' shopping -list.lst
+* EX: Delete line from range x to y
+  * sed '2,8d' shopping-list.lst 
+* EX: To delete blank lines & insert one blank line after each line
+  * sed '/^$/d;G' shopping-list.lst    
+<br>
+
+## I/O Redirection
+* generate 2 type of command
+* Error when command does not run
+
+## Standard file descriptor
+* positive integers used for identifying open files 
+* Standard Output
+  * Formula:
+    * command output + > + file
+* EX: Save output of command file
+  * ls -lA ~ > all-files-in-home.txt
+* EX: Save error generated by command file
+  * ls -lA downloads/ 2> error-of-ls
+<br>
+
+## Append output to file
+* add more to a file instead of overwriting its content.Use > on a file that already exists & contains data, it overwritten whatever is already inside file.
+* EX: Overwrite that already in file
+  * ls -la > allmyfiles.lst 
+* EX: Keep old data use >>
+  * ls -la >> allmyfiles.lst  
+<br>
+
+## Aliases
+* shorthand for more complicated command.Aliases do not persist unless you save them in your .bashrc or .bash_aliases file
+* Formula:
+  * alias name_of_alias="command here"
+* EX: AN alias to upgrade a linux (debian system)
+  * alias update="sudo apt update; sudo apt upgrade -y; sudo apt full-upgrade -y"
+*  An alias to clean system from unneeded packages
+   * alias clean="sudo apt auto remove -y; sudo apt auto clean; sudo apt purge;"      
+
+
