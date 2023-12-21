@@ -7,7 +7,7 @@ course: cis106
 # Week Report 7
 
 ## Cat Command
-* cat command used for display content of file 
+* cat com 
 * Formula:
   * cat + option +Files to display
 * EX:  Display content of /etc/passwd file
